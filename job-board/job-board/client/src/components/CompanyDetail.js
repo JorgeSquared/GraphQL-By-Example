@@ -1,6 +1,7 @@
 import { useParams } from 'react-router';
 import {getCompany} from "../graphql/queries";
 import {useEffect, useState} from "react";
+import JobList from "./JobList";
 
 function CompanyDetail() {
     const [company, setCompany] = useState(null);
@@ -14,12 +15,16 @@ function CompanyDetail() {
     }
     return (
     <div>
-      <h1 className="title">
+        <h1 className="title">
         {company.name}
-      </h1>
-      <div className="box">
+        </h1>
+        <div className="box">
         {company.description}
-      </div>
+        </div>
+        <h5 className="title is-5">
+            Jobs at {company.name}
+        </h5>
+        <JobList jobs={company.jobs} />
     </div>
     );
 }
